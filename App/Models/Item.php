@@ -26,7 +26,8 @@ class Item extends \Core\Model
     }
 
     public static function saveItem($request)
-    {        
+    {     
+        date_default_timezone_set('Asia/Dhaka');   
 
         if(isset($_COOKIE[$request['entry_by']])) {
             return ['status'=>"error",'message'=> $_COOKIE[$request['entry_by']]];

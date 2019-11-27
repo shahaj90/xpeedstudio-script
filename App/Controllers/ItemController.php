@@ -31,13 +31,13 @@ class ItemController extends \Core\Model
 		$validator = new Validator;
 		$validation = $validator->validate($_POST, [
 			'amount' => 'required|numeric',
-			'buyer' => 'required|alpha_num|alpha_spaces|max:20',
-			'receipt_id' => 'required|alpha',
+			'buyer' => 'required|regex:/[a-zA-Z0-9\s]/|max:20',
+			'receipt_id' => 'required|regex:/[a-zA-Z]/',
 			'items' => 'array',
-			'items.*' => 'required|alpha',
+			'items.*' => 'required|regex:/[a-zA-Z]/',
 			'buyer_email' => 'required|email',
 			'note' => 'required|max:30',
-			'city' => 'required|alpha_spaces',
+			'city' => 'required|regex:/[a-zA-Z\s]/',
 			'phone' => 'required|numeric',
 			'entry_by' => 'required|numeric',
 		]);
