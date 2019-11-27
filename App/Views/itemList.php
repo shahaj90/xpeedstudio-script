@@ -25,13 +25,13 @@
 
               <form class="form-inline" id="itemListSearchForm">
                 <div class="form-group">
-                  <input id="from_date" type="text" name="from_date" placeholder="From Date" class="mr-3 form-control" readonly>
+                  <input id="from_date" type="text" name="from_date" placeholder="From Date" class="mr-3 form-control" autocomplete="off" readonly>
                 </div>
                 <div class="form-group">
-                  <input id="to_date" type="text" name="to_date" placeholder="To Date" class="mr-3 form-control" readonly>
+                  <input id="to_date" type="text" name="to_date" placeholder="To Date" class="mr-3 form-control" autocomplete="off" readonly>
                 </div>
                 <div class="form-group">
-                  <input id="user_id" type="text" placeholder="User ID" class="mr-3 form-control" name="user_id">
+                  <input id="user_id" type="text" placeholder="User ID" class="mr-3 form-control" name="user_id" autocomplete="off">
                 </div>
 
                 <div class="form-group">
