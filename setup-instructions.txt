@@ -1,0 +1,7 @@
+step-1: Unzip the "xpeedstudio-script-mvc"
+step-2: Past(Unzip folder) to xampp/htdocs folder
+step-3: Create db "xpeed_studio" and import db backup from db_backup/xpeed_studio.sql
+step-4: Go to App/Config.php and open file
+step-5: Update necessary value like HOST_URL,DB_HOST,DB_NAME,DB_USER and DB_PASSWORD
+step-6: Ready to run script!
+step-7: Now go to http://localhost/xpeedstudio-script-mvc/public
