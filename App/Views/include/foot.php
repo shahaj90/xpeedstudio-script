@@ -14,7 +14,5 @@
 <!-- Main File-->
 <script src="js/front.js"></script>
 <script src="js/item.js"></script>
-<script src="js/buyer.js"></script>
-<script src="js/user.js"></script>
 </body>
 </html>

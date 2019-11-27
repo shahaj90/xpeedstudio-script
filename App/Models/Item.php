@@ -42,7 +42,7 @@ class Item extends \Core\Model
             'buyer_ip'=> Item::__getUserIpAddr(),
             'note'=> $request['note'],
             'city'=> $request['city'],
-            'phone'=> $request['phone'],
+            'phone'=> '880'.$request['phone'],
             'hash_key'=> hash('sha512', $request['receipt_id']),
             'entry_at'=> date('Y-m-d'),
             'entry_by'=> $request['entry_by']
@@ -50,13 +50,13 @@ class Item extends \Core\Model
 
         $columns = implode(", ",array_keys($insertParam));
         $values = "'". implode("', '",array_values($insertParam)). "'";
-        $sql = "INSERT INTO buyers ({$columns}) VALUES ({$values})";
+        $sql = "INSERT INTO items ({$columns}) VALUES ({$values})";
 
         if (!$db->query($sql)) {
             return ['status'=>"error",'message'=>"Iteam Save Failed"];            
         }
 
-        $cookie_value = "You already insert item at ". date('Y-m-d H:i:s')." you should wait 24 hours.";
+        $cookie_value = "You already insert item at ". date('Y-m-d H:i:s')." you should wait 24 hours";
         setcookie($request['entry_by'], $cookie_value, time()+3600); 
 
         return ['status'=>"success",'message'=>"Item Save Successfully"];
@@ -65,19 +65,18 @@ class Item extends \Core\Model
     public static function searchItems($request)
     {
         $db = static::getDB();
-        $sql = "SELECT * FROM buyers";
-        $dateStatus = false;
-        if (!empty($request['from_date']) && $request['to_date']) {
-            $dateStatus = true;
-            $sql .=" WHERE entry_at >= '{$request['from_date']}' AND entry_at <= '{$request['to_date']}'";
+        $sql = "SELECT * FROM items WHERE id > 0";
+
+        if (isset($request['from_date']) && $request['from_date'] !='') {
+            $sql .=" AND entry_at >= '{$request['from_date']}'";
         }
 
-        if (!empty($request['user_id'])) {
-            if ($dateStatus) {
-                $sql .=" AND entry_by = '{$request['user_id']}'";    
-            }else{
-                $sql .=" WHERE entry_by = '{$request['user_id']}'";
-            }            
+        if (isset($request['to_date']) && $request['to_date'] !='') {
+            $sql .=" AND entry_at <= '{$request['to_date']}'";
+        }
+
+        if (isset($request['user_id']) && $request['user_id'] != '') {
+            $sql .=" AND entry_by = '{$request['user_id']}'";             
         }
 
         $sql .=" ORDER BY id DESC";        

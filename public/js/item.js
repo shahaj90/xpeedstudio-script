@@ -28,6 +28,7 @@ function saveItem() {
    validClass: 'is-valid',
    ignore: ':hidden:not(.summernote),.note-editable.card-block',
    errorPlacement: function (error, element) {
+    $("#addMessage").hide();
     error.addClass("invalid-feedback");
     if (element.prop("type") === "checkbox") {
       error.insertAfter(element.siblings("label"));
@@ -97,6 +98,7 @@ function saveItem() {
 
         $("#addMessage").html(response.message);
         $("#addMessage").show();
+        $('html, body').animate({scrollTop : 0},700);
       }
     });
   }
@@ -135,6 +137,19 @@ function searchIteams() {
           to_date: $("#to_date").val(),
           user_id: $("#user_id").val(),
         },
+      },
+      "drawCallback": function (settings) { 
+        var response = settings.json;
+        if (response) {
+          if (response.status =='error') {
+            $( "#itemListSearchMessage" ).removeClass( "alert-success" ).addClass( "alert-danger" );
+            $("#itemListSearchMessage").html(response.message);
+            $("#itemListSearchMessage").show();
+
+          }else{
+            $("#itemListSearchMessage").hide();
+          }
+        }
       },
       "columns": [
       {

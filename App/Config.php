@@ -14,7 +14,7 @@ class Config
      * @var string
      */
 
-    const HOST_URL = 'http://localhost/php-mvc/public';
+    const HOST_URL = 'http://localhost/xpeedstudio-script-mvc/public';
 
     /**
      * Database host
@@ -26,7 +26,7 @@ class Config
      * Database name
      * @var string
      */
-    const DB_NAME = 'xpeed_studio_buyer';
+    const DB_NAME = 'xpeed_studio';
 
     /**
      * Database user
